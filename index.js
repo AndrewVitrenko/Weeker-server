@@ -14,5 +14,5 @@ app.use(bodyParser.json());
 app.use('/', require('./controls'));
 
 app.listen(port, host, () =>
-  console.log('started server successfuly on port: ', port),
+  console.log('started server successfuly on port: ', port)
 );
