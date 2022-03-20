@@ -3,6 +3,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
+const connect = require('./db');
+
+connect();
 
 const port = process.env.PORT;
 const host = process.env.HOST;
