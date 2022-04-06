@@ -7,21 +7,20 @@ const Users = require('../models');
 
 const TOKEN_KEY = process.env.TOKEN_KEY;
 
-const internalServerError = 'An error occurred on server. Reload and try again';
-const userNotFoundError = 'User was not found. Check your email';
+const ERRORS = require('../config/errors');
 
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!(email && password)) {
       return res.status(400).json({
-        message: 'Need both, email and password',
+        message: ERRORS.ALL_FIELDS_REQUIRED,
       });
     }
     const user = await Users.findOne({ email });
     if (!user) {
       return res.status(404).json({
-        message: userNotFoundError,
+        message: ERRORS.USER_NOT_FOUND,
       });
     }
 
@@ -33,13 +32,13 @@ router.post('/login', async (req, res) => {
       res.status(200).json({ token });
     } else {
       res.status(401).json({
-        message: 'Wrong credentials',
+        message: ERRORS.WRONG_CREDENTIALS,
       });
     }
   } catch (e) {
     console.log(e);
     res.status(500).json({
-      message: internalServerError,
+      message: ERRORS.INTERNAL_SERVER_ERROR,
     });
   }
 });
@@ -49,13 +48,13 @@ router.post('/signup', async (req, res) => {
     const { email, password, name, surname, phone } = req.body;
     if (!(email && password && name && surname)) {
       return res.status(400).json({
-        message: 'All inputs are required',
+        message: ERRORS.ALL_FIELDS_REQUIRED,
       });
     }
     const user = await Users.findOne({ email });
     if (user) {
       return res.status(409).json({
-        message: 'User is alredy registered',
+        message: ERRORS.USER_REGISTERED,
       });
     }
 
@@ -75,7 +74,7 @@ router.post('/signup', async (req, res) => {
   } catch (e) {
     console.log(e);
     res.status(500).json({
-      message: internalServerError,
+      message: ERRORS.INTERNAL_SERVER_ERROR,
     });
   }
 });
