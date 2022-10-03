@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const Users = require('../models');
+const authMiddleware = require('../middleware/auth');
 
 const TOKEN_KEY = process.env.TOKEN_KEY;
 
@@ -73,6 +74,28 @@ router.post('/signup', async (req, res) => {
     res.status(201).json({ token });
   } catch (e) {
     console.log(e);
+    res.status(500).json({
+      message: ERRORS.INTERNAL_SERVER_ERROR,
+    });
+  }
+});
+
+router.get('/getTodos', authMiddleware, async (req, res) => {
+  try {
+    const { userId } = req.user;
+    const user = await Users.findById(userId);
+
+    if (!user) {
+      res.status(404).json({
+        messgae: ERRORS.USER_NOT_FOUND,
+      });
+      return;
+    }
+
+    res.status(200).json({
+      todos: user.tasks,
+    });
+  } catch (e) {
     res.status(500).json({
       message: ERRORS.INTERNAL_SERVER_ERROR,
     });
