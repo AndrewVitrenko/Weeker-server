@@ -31,19 +31,13 @@ const userSchema = new Schema({
         type: String,
         required: true,
       },
-      day: {
+      startTime: {
         type: String,
         required: true,
       },
-      time: {
-        start: {
-          type: String,
-          required: true,
-        },
-        end: {
-          type: String,
-          required: true,
-        },
+      endTime: {
+        type: String,
+        required: true,
       },
       backgroudColor: {
         type: String,
