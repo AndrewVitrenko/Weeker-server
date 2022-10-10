@@ -4,7 +4,16 @@ const ERRORS = require('../config/errors');
 const TOKEN_KEY = process.env.TOKEN_KEY;
 
 const authMiddleware = (req, res, next) => {
-  const token = req.headers.authorization.split(' ')[1];
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader) {
+    res.status(403).json({
+      message: ERRORS.TOKEN_REQUIRED,
+    });
+    return;
+  }
+
+  const token = authHeader.split(' ')[1];
 
   if (!token) {
     res.status(403).json({
