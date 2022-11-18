@@ -27,7 +27,7 @@ const userSchema = new Schema({
   },
   tasks: [
     {
-      id: {
+      _id: {
         type: String,
         required: true,
       },
@@ -46,6 +46,10 @@ const userSchema = new Schema({
       text: {
         type: String,
         required: true,
+      },
+      background: {
+        type: String,
+        required: false,
       },
     },
   ],
