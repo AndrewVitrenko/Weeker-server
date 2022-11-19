@@ -27,23 +27,17 @@ const userSchema = new Schema({
   },
   tasks: [
     {
-      id: {
+      _id: {
         type: String,
         required: true,
       },
-      day: {
+      startTime: {
         type: String,
         required: true,
       },
-      time: {
-        start: {
-          type: String,
-          required: true,
-        },
-        end: {
-          type: String,
-          required: true,
-        },
+      endTime: {
+        type: String,
+        required: true,
       },
       backgroudColor: {
         type: String,
@@ -52,6 +46,10 @@ const userSchema = new Schema({
       text: {
         type: String,
         required: true,
+      },
+      background: {
+        type: String,
+        required: false,
       },
     },
   ],
