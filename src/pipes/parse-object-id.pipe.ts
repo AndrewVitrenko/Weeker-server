@@ -1,14 +1,9 @@
-import {
-  ArgumentMetadata,
-  Injectable,
-  PipeTransform,
-  BadRequestException,
-} from '@nestjs/common';
+import { Injectable, PipeTransform, BadRequestException } from '@nestjs/common';
 import { Types } from 'mongoose';
 
 @Injectable()
 export class ParseObjectIdPipe implements PipeTransform {
-  transform(value: string, metadata: ArgumentMetadata) {
+  transform(value: string) {
     const isValidId = Types.ObjectId.isValid(value);
 
     if (!isValidId) {
