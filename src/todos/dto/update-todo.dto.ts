@@ -1,8 +1,8 @@
 import {
-  IsString,
   IsDateString,
-  IsOptional,
   IsNotEmpty,
+  IsOptional,
+  IsString,
 } from 'class-validator';
 
 export class UpdateTodoDto {

@@ -1,8 +1,8 @@
-import { hash, genSalt } from 'bcrypt';
-import { Model } from 'mongoose';
 import { ConflictException, Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
 import { JwtService } from '@nestjs/jwt';
+import { InjectModel } from '@nestjs/mongoose';
+import { genSalt, hash } from 'bcrypt';
+import { Model } from 'mongoose';
 
 import { RegisterUserDto } from './dto';
 import { User, UserType } from './schemas';
