@@ -1,19 +1,21 @@
 import {
   Body,
   Controller,
-  Get,
-  Post,
-  Patch,
-  Param,
   Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
   Query,
   Request,
   UseGuards,
 } from '@nestjs/common';
+
 import { JwtGuard } from '../guards';
+import { ParseDatePipe, ParseObjectIdPipe } from '../pipes';
+
 import { CreateTodoDto, UpdateTodoDto } from './dto';
 import { TodosService } from './todos.service';
-import { ParseDatePipe, ParseObjectIdPipe } from '../pipes';
 
 @Controller('todos')
 export class TodosController {

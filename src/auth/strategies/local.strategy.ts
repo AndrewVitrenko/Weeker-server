@@ -1,9 +1,9 @@
-import { Strategy } from 'passport-local';
-import { PassportStrategy } from '@nestjs/passport';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { compare } from 'bcrypt';
 import { InjectModel } from '@nestjs/mongoose';
+import { PassportStrategy } from '@nestjs/passport';
+import { compare } from 'bcrypt';
 import { Model } from 'mongoose';
+import { Strategy } from 'passport-local';
 
 import { User, UserType } from '../schemas';
 
